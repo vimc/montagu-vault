@@ -1,0 +1,7 @@
+# Allow read only access to barman database passwords on production
+path "secret/database/production/users/barman" {
+    policy = "read"
+}
+path "secret/database/production/users/streaming-barman" {
+    policy = "read"
+}
