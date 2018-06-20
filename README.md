@@ -9,7 +9,7 @@
 2. `export VAULT_AUTH_GITHUB_TOKEN=<personal access token>`. To generate a 
    personal access token, go to GitHub > Settings > Personal Access Tokens. The
    new token must have the 'user' scope.
-3. `vault auth -method=github`
+3. `vault login -method=github`
 
 ### Reading secrets
 
