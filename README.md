@@ -7,7 +7,7 @@
 ### Authenticating against the vault
 1. `export VAULT_ADDR='https://support.montagu.dide.ic.ac.uk:8200'`
 2. `export VAULT_AUTH_GITHUB_TOKEN=<personal access token>`. To generate a 
-   personal access token, go to GitHub > Settings > Personal Access Tokens. The
+   personal access token, go to GitHub > Settings > Developer Settings > Personal Access Tokens. The
    new token must have the 'user' scope.
 3. `vault login -method=github`
 
