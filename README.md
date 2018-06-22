@@ -142,13 +142,13 @@ pull down a built image from the registry.
 Changes to the vault are stored in [`changes`](changes).  These will typically interact with things outside of `/secret` and need elevated vault privledges.  We need to do this properly at some point with issuing temporary root tokens, but for now:
 
 ```
-vault auth
+vault login
 ```
 
 pasting in the root token as needed.  When you are done, do
 
 ```
-vault auth -method=github
+vault login -method=github
 ```
 
 to revert to normal permissions.
