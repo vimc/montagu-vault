@@ -16,7 +16,7 @@ if [ ! -f $FILE_CLEAR ]; then
         echo -n "Paste your github token: "
         read -s VAULT_AUTH_GITHUB_TOKEN
     fi
-    vault auth -method=github
+    vault login -method=github
     vault read -field=key secret/ssl/support > $FILE_CLEAR
     function cleanup {
         echo "Removing ssl key"
