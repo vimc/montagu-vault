@@ -71,7 +71,7 @@ contents in memory.
 Each keyholder up to the required number must run on their machine:
 
 1. `export VAULT_ADDR=https://support.montagu.dide.ic.ac.uk:8200`
-2. `vault unseal` (you will be prompted for your unseal key)
+2. `vault operator unseal` (you will be prompted for your unseal key)
 
 This shouldn't happen often.
 
