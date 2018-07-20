@@ -11,6 +11,6 @@ echo "Enter symmetric key: "
 echo -n "key: "
 read SYMKEY
 export SYMKEY
-openssl aes-256-cbc -d -in $FILE_ENC -out $FILE_CLEAR -pass env:SYMKEY
+openssl aes-256-cbc -d -md md5 -in $FILE_ENC -out $FILE_CLEAR -pass env:SYMKEY
 echo "Wrote out the ssl private key to $FILE_CLEAR"
 diff $FILE_ORIGINAL $FILE_CLEAR
