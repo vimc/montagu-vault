@@ -42,3 +42,8 @@ for KEY_NAME in $(ls -1 $PATH_PUBKEY); do
                 -inkey <(ssh-keygen -e -f $FILE_PUBKEY -m PKCS8) \
                 -out "$PATH_KEY/$KEY_NAME"
 done
+
+echo ""
+echo "Now test that everything is working by running:"
+echo "./ssl-key/decrypt-key.sh"
+echo "and check that you get the same symmetric key back out."
