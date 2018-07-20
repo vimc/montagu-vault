@@ -1,3 +1,4 @@
 secret/ssl_private_key
 ssl-key/ssl_private_key
+ssl-key/ssl_private_key.copy
 storage
