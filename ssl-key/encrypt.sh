@@ -26,8 +26,10 @@ if [ ! -f $FILE_CLEAR ]; then
 fi
 
 # Generate the symmetric key and encrypt our ssl private key with it
-export SYMKEY=`openssl rand 32 -hex`
+SYMKEY=$(openssl rand -hex 32)
+export SYMKEY
 openssl aes-256-cbc -in $FILE_CLEAR -out $FILE_ENC -pass "env:SYMKEY"
+echo "Generated symmetric key: $SYMKEY"
 
 ## Then encrypt the symmetric key with each public key:
 rm -rf $PATH_KEY
