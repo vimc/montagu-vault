@@ -9,13 +9,13 @@ One might set the root token this way:
 ```
 echo -n "Root token: "
 read -s TOKEN
-vault auth $TOKEN
+vault login $TOKEN
 ```
 
 Which can be done via `./auth-root.sh`.  Be aware that this sets the root token in `~/.vault-token` which is probably not what is desired.  So after running this, run something like
 
 ```
-vault auth -method=github
+vault login -method=github
 ```
 
 to reset the token to be a non-root token

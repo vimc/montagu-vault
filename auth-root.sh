@@ -2,5 +2,5 @@
 set -e
 echo -n "Root token: "
 read -s TOKEN
-vault auth $TOKEN > /dev/null
+vault login $TOKEN > /dev/null
 echo "Authorised"
