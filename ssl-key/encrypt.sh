@@ -27,6 +27,7 @@ fi
 
 # Generate the symmetric key and encrypt our ssl private key with it
 SYMKEY=$(openssl rand -hex 32)
+# If we generate and export in one step then error codes get swallowed
 export SYMKEY
 openssl aes-256-cbc -in $FILE_CLEAR -out $FILE_ENC -pass "env:SYMKEY"
 echo "Generated symmetric key: $SYMKEY"
