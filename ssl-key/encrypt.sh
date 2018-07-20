@@ -18,11 +18,6 @@ if [ ! -f $FILE_CLEAR ]; then
     fi
     vault login -method=github
     vault read -field=key secret/ssl/support > $FILE_CLEAR
-    function cleanup {
-        echo "Removing ssl key"
-        rm -f $FILE_CLEAR
-    }
-    trap cleanup EXIT
 fi
 
 # Generate the symmetric key and encrypt our ssl private key with it
@@ -45,6 +40,9 @@ for KEY_NAME in $(ls -1 $PATH_PUBKEY); do
 done
 
 echo ""
-echo "Now test that everything is working by running:"
-echo "./ssl-key/decrypt-key.sh"
+echo "Now test that everything is working:"
+echo "1) ./ssl-key/decrypt-key.sh"
 echo "and check that you get the same symmetric key back out."
+echo "2) ./scripts/decrypt-ssl-key-local.sh"
+echo "and check there is no diff between the original key and the decrypted key"
+echo "3) rm ./ssl-key/ssl_private_key ./ssl-key/ssl_private_key.copy"
