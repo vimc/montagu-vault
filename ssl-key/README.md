@@ -21,9 +21,11 @@ A multi-key approach like [this](https://gist.github.com/kennwhite/9918739) seem
 
 (e.g., if you rebuild your computer and add a new key, a new person joins the project, etc).
 
-* Copy the ssh **public** key - `~/.ssh/id_rsa.pub` - into `pubkey/` with a descriptive name, and commit to git
+* Copy the ssh **public** key - `~/.ssh/id_rsa.pub` - into `pubkey/` with a descriptive name
 * Run the script `./ssl-key/encrypt.sh` which will create a new set of encrypted keys
 * Run `git add ssl-key/pub ssl-key/key` to add the public key and encrypted symmetric key, commit and push.  There is no need to redeploy the vault.
+
+The symmetric key is never stored anywhere in the clear so rather than requiring two people's interaction here (decrypting the symmetric key with Alice's private key and encrypting that with Bob's public key) we just create a new symmetric key, encrypt the ssl key again (the last one) with it and then save an encrypted copy for everyone.
 
 ## To replace the ssl certificate private key
 
