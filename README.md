@@ -22,13 +22,12 @@ vault read secret/some/path
 If the Vault docker container is stopped (for example, because the support 
 machine is rebooted, or because you are restoring from backup), follow these steps:
 
-1. Begin a session on the support machine.
-2. Clone this respository: `git clone https://github.com/vimc/montagu-vault.git`
-3. `cd montagu-vault`
-4. `./run.sh`
-5. Follow the instructions it prints *on your local machine* to retrieve the key required to unlock the ssl key.
-6. End your remote session.
-7. Collaborate with keyholders to unseal the vault, as described in the next
+1. Begin a session on the support machine as the `montagu` user
+2. `cd vault`
+3. `./run.sh`
+4. Follow the instructions it prints *on your local machine* to retrieve the key required to unlock the ssl key.
+5. End your remote session.
+6. Collaborate with keyholders to unseal the vault, as described in the next
    section.
 
 The process for restoring the vault from backup is identical.  If you have been following the [Disaster Recovery guide](https://github.com/vimc/montagu/tree/master/docs/DisasterRecovery.md) then the vault volume will be ready to use.
