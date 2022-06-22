@@ -1,4 +1,4 @@
-# Montagu secrets vault 
+# Montagu secrets vault
 
 [Vault](https://www.vaultproject.io/) is a piece of software for storing secrets. They have an official [docker image](https://hub.docker.com/_/vault/).
 
@@ -6,7 +6,7 @@
 
 ### Authenticating against the vault
 1. `export VAULT_ADDR='https://support.montagu.dide.ic.ac.uk:8200'`
-2. `export VAULT_AUTH_GITHUB_TOKEN=<personal access token>`. To generate a 
+2. `export VAULT_AUTH_GITHUB_TOKEN=<personal access token>`. To generate a
    personal access token, go to GitHub > Settings > Developer Settings > Personal Access Tokens. The
    new token must have the 'user' scope.
 3. `vault login -method=github`
@@ -19,7 +19,7 @@ vault read secret/some/path
 
 ### Restarting and/or restoring the vault
 
-If the Vault docker container is stopped (for example, because the support 
+If the Vault docker container is stopped (for example, because the support
 machine is rebooted, or because you are restoring from backup), follow these steps:
 
 1. Begin a session on the support machine as the `montagu` user
@@ -63,8 +63,8 @@ At this point you can now run `./run.sh` to test the restore process
 ### Unsealing the vault
 
 The vault is stored on disk at `/vault/storage` on the support machine. However,
-it is encrypted on disk. Any time the Vault restarts (or is restored from 
-backup) we have to provide enough unseal keys to allow it to decrypt the 
+it is encrypted on disk. Any time the Vault restarts (or is restored from
+backup) we have to provide enough unseal keys to allow it to decrypt the
 contents in memory.
 
 Each keyholder up to the required number must run on their machine:
@@ -97,14 +97,14 @@ This repository contains:
     - `run.sh`
     - `include/start-text.txt`
 * Scripts to be run to set up a brand new Vault (we shouldn't need these again)
-  unless we suffer a catastrophic backup failure and have to generate new 
+  unless we suffer a catastrophic backup failure and have to generate new
   secrets):
     - `init/init.sh`
     - `init/first-time-setup.sh`
 
 ### How we initially created the vault
 
-Since we hopefully won't do this again, this is more documentation of what 
+Since we hopefully won't do this again, this is more documentation of what
 Martin did to get us here (adapted to use the new ssl key handling)
 
 1. Begin a session on the support machine.
@@ -153,3 +153,29 @@ vault login -method=github
 ```
 
 to revert to normal permissions.
+
+## TLS and SSL keys
+
+ICT will give a single new certificate (previously there was a set of three). This is the PEMIA on the email.  Save this as `certs/support.montagu.crt`
+
+On support, Bring down the vault with
+
+```
+docker kill montagu-vault
+```
+
+As the montagu user, in the `~/vault` directory (don't forget to update git) run
+
+```
+./run.sh
+```
+
+Copy the symmetric key (instructions will be printed, but running
+
+```
+./ssl-key/decrypt-key.sh <keyname>
+```
+
+will do the trick.
+
+Then organise everyone to run `vault operator unseal` per usual
