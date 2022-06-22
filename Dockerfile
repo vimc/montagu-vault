@@ -2,11 +2,7 @@ FROM vault:1.0.2
 RUN apk add --update openssl curl
 
 COPY vault.conf /vault/config/
-COPY certs/support.montagu.crt /vault/config/
-COPY certs/QuoVadisOVIntermediateCertificate.crt /vault/config/
-RUN cat /vault/config/support.montagu.crt \
-        /vault/config/QuoVadisOVIntermediateCertificate.crt \
-        > /vault/config/ssl_certificate
+COPY certs/support.montagu.crt /vault/config/ssl_certificate
 
 WORKDIR /app
 COPY scripts/*.sh ./
