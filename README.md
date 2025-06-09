@@ -1,3 +1,8 @@
+> [!NOTE]
+> The repository has been supplanted by [mrc-ide-vault][mrc-ide-vault].
+
+[mrc-ide-vault]: https://github.com/mrc-ide/mrc-ide-vault
+
 # Montagu secrets vault
 
 [Vault](https://www.vaultproject.io/) is a piece of software for storing secrets. They have an official [docker image](https://hub.docker.com/_/vault/).
